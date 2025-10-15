@@ -1,0 +1,29 @@
+{
+  "psa_framework_version": 1.1,
+  "name": "POWER_MANAGER",
+  "type": "APPLICATION-ROT",
+  "priority": "NORMAL",
+  "model": "SFN",
+  "entry_init": "power_manager_init",
+  "stack_size": "0x800",
+  "irqs": [
+    {
+      "source": "CYBSP_USER_BTN1_IRQ",
+      "name": "USER_BTN1_INTERRUPT",
+      "handling": "FLIH"
+    }
+  ],
+  "services": [
+    {
+      "name": "POWER_MANAGER_SERVICE",
+      "sid": "0x49465000",
+      "non_secure_clients": true,
+      "version_policy": "RELAXED",
+      "version": 1,
+      "stateless_handle": "auto",
+      "connection_based": false,
+      "mm_iovec": "disable"
+    }
+  ],
+  "dependencies": []
+}

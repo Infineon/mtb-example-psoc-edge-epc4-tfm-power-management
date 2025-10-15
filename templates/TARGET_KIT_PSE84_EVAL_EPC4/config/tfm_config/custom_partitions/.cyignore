@@ -1,0 +1,3 @@
+# Custom partitions are copied to a secure project by TF-M during the build
+# Exclude them from ModusToolbox build system to avoid compilation errors
+.

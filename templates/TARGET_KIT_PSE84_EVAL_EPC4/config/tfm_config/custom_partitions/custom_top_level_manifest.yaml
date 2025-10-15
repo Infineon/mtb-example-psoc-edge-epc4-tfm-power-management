@@ -1,0 +1,38 @@
+#-------------------------------------------------------------------------------
+# Copyright (c) 2021-2022, Arm Limited. All rights reserved.
+# Copyright (c) 2025 Cypress Semiconductor Corporation (an Infineon company)
+# or an affiliate of Cypress Semiconductor Corporation. All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+#-------------------------------------------------------------------------------
+
+{
+  "description": "Custom secure partition manifests",
+  "type": "manifest_list",
+  "version_major": 0,
+  "version_minor": 1,
+  "manifest_list": [
+    {
+      "description": "POWER_MANAGER",
+      "manifest":    "power_manager/power_manager.json",
+      "output_path": "secure_fw/custom_partitions/power_manager",
+      "conditional": "TFM_PARTITION_POWER_MANAGER",
+      # The "pid" field is optional. If omitted, it will be auto-generated,
+      # which may cause the PID value to change between builds. This can
+      # result in storage assets (e.g., ITS, PS, SE RT key storage) created
+      # with a previous PID becoming inaccessible to the partition if the PID
+      # changes.
+      # To ensure consistent access to storage assets across builds, specify a
+      # fixed "pid" value by selecting an available PID from the VALID_PIDS list
+      # in <tfm_root>/tools/tfm_partition_manifest.py.
+      "version_major": 0,
+      "version_minor": 1,
+      "linker_pattern": {
+        "library_list": [
+           "*tfm_*partition_power_manager.*"
+         ]
+      }
+    }
+  ]
+}
