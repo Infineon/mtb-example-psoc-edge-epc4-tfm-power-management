@@ -7,7 +7,7 @@
 #
 ################################################################################
 # \copyright
-# (c) 2024-2025, Infineon Technologies AG, or an affiliate of Infineon
+# (c) 2024-2026, Infineon Technologies AG, or an affiliate of Infineon
 # Technologies AG.  SPDX-License-Identifier: Apache-2.0
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,6 +40,10 @@ TARGET=KIT_PSE84_EVAL_EPC4
 #
 # See also: CY_COMPILER_PATH below
 TOOLCHAIN=GCC_ARM
+
+# Toolchains supported by this code example. See README.md file.
+# This is used by automated build systems to identify the supported toolchains.
+MTB_SUPPORTED_TOOLCHAINS?=GCC_ARM ARM IAR
 
 # Default build configuration. Options include:
 #

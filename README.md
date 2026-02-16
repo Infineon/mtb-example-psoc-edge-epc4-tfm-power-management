@@ -1,6 +1,6 @@
 # PSOC&trade; Edge MCU EPC4: Power management with TFM
 
-This code example guides you through getting started with Power management with Trusted Firmware-M (TF-M) and FreeRTOS on PSOC&trade; Edge MCU. The example demonstrates how to create a custom TF-M partition, initialize the TF-M non-secure (NS) interface, FreeRTOS in the CM33 NS project, and use the services offered by TF-M with PSA APIs. The code example is designed to work on Edge Protect Category 4 (EPC4) MCUs. See [Infineon Edge Protect](https://www.infineon.com/promo/edge-protect) for more information on Edge Protect Categories.
+This is a basic code example for getting started with Power management using Trusted Firmware-M (TF-M) and FreeRTOS on PSOC&trade; Edge MCU. The example demonstrates how to initialize the TF-M non-secure (NS) interface and FreeRTOS in the CM33 NS project. The application alternates between active and DeepSleep power modes, waking and sleeping periodically. The code example is designed to work on Edge Protect Category 4 (EPC4) MCUs. For more information on Edge Protect Categories, see [this page](https://www.infineon.com/promo/edge-protect).
 
 > **Note:** This code example is applicable for KIT_PSE84_EVAL_EPC4 kit only.
 
@@ -8,20 +8,20 @@ This code example has a three project structure: CM33 secure, CM33 non-secure, a
 
 - *proj_cm33_s:* TF-M is available as source code in the *mtb_shared* directory. *proj_cm33_s* is completely built out of this TF-M library. Only *Makefile* and dependencies are present in this project directory that uses the TF-M library. The TF-M application is executed from SRAM.
 
-- *proj_cm33_ns:* The NSPE project, which contains the TF-M interface and calls the PSA APIs to use the TF-M services. The CM33 NS application is executed from the external flash and uses RTOS
+- *proj_cm33_ns:* The NSPE project which contains the TF-M interface and FreeRTOS. The CM33 NS application is executed from the external flash. The project periodically places device in DeepSleep and active power mode, cycling between sleep and wake states.
 
-- *proj_cm55:* The M55 NSPE project, while it also has the TF-M interface, it does not call the PSA APIs. Include the required PSA interface header files and the project is ready to use PSA APIs. The CM55 project is executed from the external flash and does not use RTOS
+- *proj_cm55:* The M55 NSPE project – while it also has the TF-M interface, it does not call the PSA APIs. It includes the required PSA interface header files and the project is ready to use PSA APIs. The CM55 project is executed from the external flash and contains FreeRTOS.
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-psoc-edge-epc4-tfm-power-management)
 
-[Provide feedback on this code example.](https://yourvoice.infineon.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDIyMjAiLCJTcGVjIE51bWJlciI6IjAwMi00MjIyMCIsIkRvYyBUaXRsZSI6IlBTT0MmdHJhZGU7IEVkZ2UgTUNVIEVQQzQ6IFBvd2VyIG1hbmFnZW1lbnQgd2l0aCBURk0iLCJyaWQiOiJ2aW5heS5yYW5nYXN3YW15QGluZmluZW9uLmNvbSIsIkRvYyB2ZXJzaW9uIjoiMS4xLjAiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiSUNXIiwiRG9jIEZhbWlseSI6IlBTT0MifQ==)
+[Provide feedback on this code example.](https://yourvoice.infineon.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDIyMjAiLCJTcGVjIE51bWJlciI6IjAwMi00MjIyMCIsIkRvYyBUaXRsZSI6IlBTT0MmdHJhZGU7IEVkZ2UgTUNVIEVQQzQ6IFBvd2VyIG1hbmFnZW1lbnQgd2l0aCBURk0iLCJyaWQiOiJ2aW5heS5yYW5nYXN3YW15QGluZmluZW9uLmNvbSIsIkRvYyB2ZXJzaW9uIjoiMS4yLjAiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiSUNXIiwiRG9jIEZhbWlseSI6IlBTT0MifQ==)
 
 See the [Design and implementation](docs/design_and_implementation.md) for the functional description of this code example.
 
 
 ## Requirements
 
-- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.6 or later (tested with v3.6)
+- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.7 or later (tested with v3.7)
 - Board support package (BSP) minimum required version: 1.0.0
 - Programming language: C
 - Associated parts: All [PSOC&trade; Edge MCU](https://www.infineon.com/products/microcontroller/32-bit-psoc-arm-cortex/32-bit-psoc-edge-arm) parts
@@ -121,6 +121,7 @@ Document title: *CE242220* – *PSOC&trade; Edge MCU EPC4: Power management with
  ------- | ---------------------
  1.0.0   | New code example
  1.1.0   | Added support for FreeRTOS on CM55 project
+ 1.2.0   | Added MTB_SUPPORTED_TOOLCHAINS variable for automated build systems <br> Updated design files to fix ModusToolbox&trade; v3.7 build warnings
 <br>
 
 
